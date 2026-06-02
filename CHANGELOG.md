@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2026-06-02
 
+### Changed
+- `next-mdx-remote` bumped from `^5.0.0` to `^6.0.0` (security advisory; v6 introduces `blockJS` and `blockDangerousJS` defaults that strip JS expressions and dangerous JS from compiled MDX). Drop-in API change — no source edits required.
+
 ### Added
 - `/changelog` page that parses `CHANGELOG.md` at build time (Keep a Changelog format)
 - `/api/og` OG image generator using `next/og` — title, description, and category as query params
