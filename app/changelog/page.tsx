@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { getChangelog } from '@/lib/changelog';
-import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
   title: 'Changelog',

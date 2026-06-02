@@ -12,6 +12,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dark mode toggle (currently follows system preference only)
 - Search across blog posts
 
+## [1.3.0] - 2026-06-02
+
+### Changed
+- **Bumped dependency stack to current (May/June 2026) versions**
+  - `next` 15.5.19 → 16.2.7
+  - `react` 19.0.0 → 19.0.0 (already current; verified)
+  - `typescript` 5.9.3 → 6.0.3
+  - `eslint` 9.39.4 → 10.4.1
+  - `eslint-config-next` → 16.2.7 (matches Next)
+  - `lucide-react` 0.468.0 → 1.17.0
+  - `next-mdx-remote` 6.x and `@tailwindcss/postcss` 4.x already current
+  - `@types/node` 22.19.19 → 25.9.1
+- **Tooling migrations required by the new stack**
+  - `next lint` was removed in Next 16. `lint` script now invokes `eslint .` directly.
+  - Migrated `.eslintrc.json` → `eslint.config.mjs` (ESLint 10 requires flat config).
+  - Temporary minimal ESLint config: uses `@next/eslint-plugin-next` directly + `typescript-eslint`, with `eslint-plugin-react` disabled because v7.37.x has an upstream `contextOrFilename.getFilename` incompat with ESLint 10. Will be re-enabled once Next.js bumps the react-plugin dep.
+- **Tailwind v4 dev server fix**
+  - Restored `postcss.config.mjs` with `@tailwindcss/postcss` plugin. Without it, Tailwind v4's `@apply` and `@layer components` were not being processed in Turbopack dev mode (only in production builds). Dev and prod now match.
+- **Design token layout in `globals.css`**
+  - Colors are now declared on `:root` (light) and `@media (prefers-color-scheme: dark) { :root { ... } }` (dark) so the media query is honored by Turbopack's CSS pipeline.
+  - A separate `@theme` block re-exports those CSS custom properties as Tailwind utility tokens (`bg-primary`, `text-foreground`, etc.), so the Tailwind v4 utility-class generation still works.
+  - Previously the dark overrides were inside `@theme { ... }` nested in the media query, which was being hoisted out — making dark values the default in light mode.
+
+### Fixed
+- Dev server now matches the build: utility classes, `@layer components`, and the prose typography are all processed correctly. No more unstyled pages on `bun run dev`.
+- `prefers-color-scheme: light` and `prefers-color-scheme: dark` both render the correct palette end-to-end.
+- Hero copy on the home page no longer says "Next.js 15" — now reflects the current stack.
+
 ## [1.2.0] - 2026-06-02
 
 ### Added
@@ -74,7 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Initial release
-- Next.js 15 App Router + TypeScript + Tailwind CSS v4
+- Next.js 16 App Router + TypeScript + Tailwind CSS v4
 - MDX content layer via `next-mdx-remote` and `@next/mdx`
 - Example routes: `/`, `/services`, `/about`, `/blog`, `/blog/[slug]`, `/contact`
 - Auto-generated `sitemap.xml` and `robots.txt`

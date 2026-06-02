@@ -13,14 +13,14 @@ export default function AboutPage() {
         We build websites that don&apos;t fall apart.
       </h1>
 
-      <div className="mt-12 space-y-6 text-lg leading-relaxed text-foreground/85">
+      <div className="prose mt-12">
         <p>
           Real routing, real content workflows, real performance. No more
-          editing a single <code className="font-mono text-base bg-muted px-1.5 py-0.5 rounded">index.html</code> and dragging a folder onto Netlify.
+          editing a single <code>index.html</code> and dragging a folder
+          onto Netlify.
         </p>
-        <h2 className="font-display text-2xl sm:text-3xl font-medium tracking-tight pt-6">
-          How we got here
-        </h2>
+
+        <h2>How we got here</h2>
         <p>
           Most personal and small-business sites are stuck in 2014: one HTML
           file, maybe some jQuery, deployed by FTP. It works, until you want
@@ -32,28 +32,17 @@ export default function AboutPage() {
           performance for free. MDX gives you real content authoring. Vercel
           gives you push-to-deploy.
         </p>
-        <h2 className="font-display text-2xl sm:text-3xl font-medium tracking-tight pt-6">
-          What this template includes
-        </h2>
-        <ul className="space-y-2 pl-0 list-none">
-          {[
-            'Next.js 15 App Router with TypeScript',
-            'Tailwind CSS v4 for styling',
-            'MDX support for blog posts and content pages',
-            'Real route structure — /services, /about, /blog/[slug]',
-            'Vercel-ready out of the box',
-            'Working contact form via Resend',
-            'OG image generator, sitemap, robots.txt',
-            'Vitest + GitHub Actions CI',
-          ].map((item) => (
-            <li key={item} className="flex gap-3">
-              <span
-                aria-hidden="true"
-                className="mt-2.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"
-              />
-              <span>{item}</span>
-            </li>
-          ))}
+
+        <h2>What this template includes</h2>
+        <ul>
+          <li>Next.js 16 App Router with TypeScript</li>
+          <li>Tailwind CSS v4 for styling</li>
+          <li>MDX support for blog posts and content pages</li>
+          <li>Real route structure — <code>/services</code>, <code>/about</code>, <code>/blog/[slug]</code></li>
+          <li>Vercel-ready out of the box</li>
+          <li>Working contact form via Resend</li>
+          <li>OG image generator, sitemap, robots.txt</li>
+          <li>Vitest + GitHub Actions CI</li>
         </ul>
       </div>
     </article>

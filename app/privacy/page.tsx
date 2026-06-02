@@ -17,16 +17,14 @@ export default function PrivacyPage() {
         Last updated: {new Date().toISOString().slice(0, 10)}
       </p>
 
-      <div className="mt-12 space-y-6 text-foreground/85 leading-relaxed">
+      <div className="prose mt-12">
         <p>
           This page explains what data {siteConfig.name} collects, why, and
           what we do with it. The short version: as little as possible, and
           nothing we don&apos;t need.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          1. Data we collect
-        </h2>
+        <h2>1. Data we collect</h2>
         <p>
           By default, this template collects nothing about you. There are no
           tracking scripts, no analytics, no third-party cookies, and no
@@ -39,21 +37,15 @@ export default function PrivacyPage() {
           policies. This template does not configure them for you.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          2. Contact form
-        </h2>
+        <h2>2. Contact form</h2>
         <p>
           If you submit the contact form, your name, email, and message
           are sent to the email address configured in{' '}
-          <code className="font-mono text-sm bg-muted px-1.5 py-0.5 rounded">
-            CONTACT_TO_EMAIL
-          </code>{' '}
-          via Resend. We retain messages only as long as needed to respond.
+          <code>CONTACT_TO_EMAIL</code> via Resend. We retain messages only
+          as long as needed to respond.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          3. Hosting &amp; logs
-        </h2>
+        <h2>3. Hosting &amp; logs</h2>
         <p>
           When deployed to Vercel, the hosting provider receives standard
           HTTP request logs (IP address, user agent, request path) for
@@ -62,28 +54,20 @@ export default function PrivacyPage() {
             href="https://vercel.com/legal/privacy-policy"
             target="_blank"
             rel="noreferrer"
-            className="text-primary hover:underline"
           >
             Vercel&apos;s privacy policy
           </a>
           .
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          4. Your rights
-        </h2>
+        <h2>4. Your rights</h2>
         <p>
           You can request access to or deletion of any personal data we
           hold about you by contacting us via the{' '}
-          <a href="/contact" className="text-primary hover:underline">
-            contact form
-          </a>
-          .
+          <a href="/contact">contact form</a>.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          5. Changes
-        </h2>
+        <h2>5. Changes</h2>
         <p>
           We may update this policy. Changes will be posted on this page
           with an updated &quot;Last updated&quot; date.

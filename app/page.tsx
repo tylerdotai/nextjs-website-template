@@ -8,7 +8,7 @@ export default function Home() {
       <section className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 pb-16 sm:pb-28">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end">
           <div className="lg:col-span-8">
-            <span className="eyebrow mb-6 block">v1.2.0 · A reference template</span>
+            <span className="eyebrow mb-6 block">v1.3.0 · A reference template</span>
             <h1 className="font-display text-[2.75rem] sm:text-6xl lg:text-7xl font-medium tracking-[-0.03em] leading-[1.02]">
               A website
               <br />
@@ -19,7 +19,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-4 lg:pb-3">
             <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-md">
-              Next.js 15, Tailwind v4, and MDX in a single repo.
+              Next.js 16, Tailwind v4, and MDX in a single repo.
               Real URLs for every page, content lives next to your code,
               and Vercel deploys on every push.
             </p>
@@ -165,8 +165,8 @@ export default function ServicesPage() {
             </div>
             <dl className="grid grid-cols-2 gap-x-6 gap-y-4 text-sm">
               {[
-                ['Framework', 'Next.js 15'],
-                ['Language', 'TypeScript 5'],
+                ['Framework', 'Next.js 16'],
+                ['Language', 'TypeScript 6'],
                 ['Styling', 'Tailwind v4'],
                 ['Content', 'MDX'],
                 ['Icons', 'Lucide'],

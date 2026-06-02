@@ -17,16 +17,14 @@ export default function TermsPage() {
         Last updated: {new Date().toISOString().slice(0, 10)}
       </p>
 
-      <div className="mt-12 space-y-6 text-foreground/85 leading-relaxed">
+      <div className="prose mt-12">
         <p>
           These Terms of Service govern your use of {siteConfig.name}. By
           using this site, you agree to these terms in full. If you
           disagree with any part, please don&apos;t use the site.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          1. Use of the site
-        </h2>
+        <h2>1. Use of the site</h2>
         <p>
           This template is provided as a starting point for building your
           own website. You may use, modify, and distribute the code under
@@ -35,9 +33,7 @@ export default function TermsPage() {
           any time.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          2. No warranty
-        </h2>
+        <h2>2. No warranty</h2>
         <p>
           The site is provided &quot;as is&quot; and &quot;as available&quot;,
           without warranty of any kind, express or implied. We do not
@@ -45,9 +41,7 @@ export default function TermsPage() {
           of defects.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          3. Limitation of liability
-        </h2>
+        <h2>3. Limitation of liability</h2>
         <p>
           To the maximum extent permitted by law, the authors and
           contributors of this project are not liable for any indirect,
@@ -55,23 +49,16 @@ export default function TermsPage() {
           from your use of the site.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          4. Changes
-        </h2>
+        <h2>4. Changes</h2>
         <p>
           We may update these terms from time to time. Continued use of the
           site after changes constitutes acceptance of the new terms.
         </p>
 
-        <h2 className="font-display text-2xl font-medium tracking-tight pt-4">
-          5. Contact
-        </h2>
+        <h2>5. Contact</h2>
         <p>
           Questions about these terms? Use the{' '}
-          <a href="/contact" className="text-primary hover:underline">
-            contact form
-          </a>
-          .
+          <a href="/contact">contact form</a>.
         </p>
       </div>
     </article>

@@ -1,19 +1,20 @@
 # Next.js Website Template
 
-A clean, production-ready Next.js 15 + Tailwind v4 + MDX starter for personal and small-business websites. Real URLs for every page, content as code, Vercel-ready.
+A clean, production-ready **Next.js 16 + Tailwind v4 + MDX** starter for personal and small-business websites. Real URLs for every page, content as code, Vercel-ready.
 
 <p align="center">
   <img src="images/logo.png" alt="Next.js Website Template logo" width="120"/>
 </p>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![GitHub Stars](https://img.shields.io/github/stars/tylerdotai/nextjs-website-template)](https://github.com/tylerdotai/nextjs-website-template/stargazers)
 
 ## Live Demo
 
+- **Live site:** [https://nextjs-website-template-sooty.vercel.app/](https://nextjs-website-template-sooty.vercel.app/)
 - Repository: `https://github.com/tylerdotai/nextjs-website-template`
 - One-click deploy: [Deploy to Vercel](https://vercel.com/new/clone?repository-url=https://github.com/tylerdotai/nextjs-website-template)
 
@@ -29,17 +30,19 @@ It is designed for people who want a polished, modern personal or small-business
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS v4 |
-| Content | MDX (via `next-mdx-remote` + `@next/mdx`) |
-| Frontmatter | `gray-matter` |
-| Icons | `lucide-react` |
-| Package manager | Bun (npm/pnpm/yarn also work) |
-| Deploy | Vercel (one-click, push-to-deploy) |
-| SEO | Built-in `sitemap.ts` + `robots.ts` |
+| Layer | Technology | Version |
+|-------|------------|---------|
+| Framework | Next.js (App Router, Turbopack) | 16.x |
+| Language | TypeScript | 6.x |
+| Linter | ESLint (flat config) | 10.x |
+| Styling | Tailwind CSS v4 (`@import "tailwindcss"`, `@theme`) | 4.x |
+| Content | MDX (via `next-mdx-remote` + `@next/mdx`) | 6.x |
+| Frontmatter | `gray-matter` | 4.x |
+| Icons | `lucide-react` | 1.x |
+| Tests | Vitest + Testing Library | 4.x / 16.x |
+| Package manager | Bun (npm/pnpm/yarn also work) | — |
+| Deploy | Vercel (one-click, push-to-deploy) | — |
+| SEO | Built-in `sitemap.ts` + `robots.ts` | — |
 
 ## Features
 
@@ -55,7 +58,7 @@ It is designed for people who want a polished, modern personal or small-business
 ### For Developers
 
 - **Type-safe routing** — full TypeScript, no untyped props
-- **Static generation** — every page prerenders as static HTML (12/12 routes at build time)
+- **Static generation** — 15 of 17 routes prerender as static HTML; the contact form and OG-image route stay dynamic on purpose
 - **Server components by default** — fast initial loads, minimal client JS
 - **MDX with components** — import React components inside markdown when you need them
 - **Tailwind v4** — `@theme` tokens, `@import "tailwindcss"`, no `tailwind.config.js` boilerplate
@@ -94,8 +97,8 @@ images/                              README assets (logo, screenshots)
 
 ### Prerequisites
 
-- Node.js 20+ (or Bun 1.0+)
-- A terminal
+- Node.js 20+ (Next.js 16 supports Node 20.x and 22.x)
+- Bun 1.0+ (recommended), or npm/pnpm/yarn
 
 ### Installation
 
@@ -198,10 +201,10 @@ import { Callout } from '@/components/Callout';
 
 ### Customizing the design
 
-- **Colors and theme tokens** — edit `@theme` in `app/globals.css`
+- **Colors and theme tokens** — edit `:root` (light) and the `@media (prefers-color-scheme: dark) { :root { ... } }` block in `app/globals.css`. The `@theme` block below re-exports those as Tailwind utility classes (e.g. `bg-primary`, `text-foreground`).
 - **Site name and nav** — edit `lib/config.ts`
-- **Layout shell (header, footer)** — edit `app/layout.tsx`
-- **Fonts** — drop in `next/font` in `app/layout.tsx` (one line, free Google Fonts)
+- **Layout shell (header, footer)** — edit `components/SiteHeader.tsx` and `components/SiteFooter.tsx`
+- **Fonts** — wired in `app/layout.tsx` via `next/font/google` (Inter for body, Fraunces for display, JetBrains Mono for code)
 
 ## Current Limitations
 
