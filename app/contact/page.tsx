@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ContactForm } from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -15,55 +16,16 @@ export default function ContactPage() {
         </p>
       </header>
 
-      <form className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1">
-            Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            className="w-full border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-accent"
-          />
-        </div>
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="w-full border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-accent"
-          />
-        </div>
-        <div>
-          <label htmlFor="message" className="block text-sm font-medium mb-1">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows={5}
-            required
-            className="w-full border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-accent"
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-foreground text-background px-5 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
-        >
-          Send message
-        </button>
-        <p className="text-xs text-muted-foreground">
-          Wire this form up to Resend, Formspree, or your own API route.
-          It currently doesn&apos;t submit anywhere — that&apos;s the one thing left
-          to you.
-        </p>
-      </form>
+      <ContactForm />
+
+      <p className="text-xs text-muted-foreground mt-4">
+        Form submits to <code className="bg-muted px-1 py-0.5 rounded">/api/contact</code>,
+        which forwards to Resend. Set <code className="bg-muted px-1 py-0.5 rounded">RESEND_API_KEY</code>,
+        <code className="bg-muted px-1 py-0.5 rounded"> CONTACT_TO_EMAIL</code>, and
+        <code className="bg-muted px-1 py-0.5 rounded"> CONTACT_FROM_EMAIL</code> in your
+        <code className="bg-muted px-1 py-0.5 rounded"> .env.local</code> file. See
+        <code className="bg-muted px-1 py-0.5 rounded"> .env.example</code>.
+      </p>
     </div>
   );
 }

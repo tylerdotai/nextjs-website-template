@@ -1,0 +1,68 @@
+---
+title: "MDX components for richer posts"
+date: "2026-06-01"
+excerpt: "Drop in Callout, CodeBlock, and YouTubeEmbed anywhere in a post. The template ships them wired up — no extra setup."
+---
+
+Plain markdown gets you 80% of the way. The last 20% is the moments where you need a callout box, a syntax-highlighted code block, or an embedded video. This template ships three MDX components ready to use.
+
+<Callout type="info" title="Heads up">
+  These components are passed to <code>MDXRemote</code> in <code>app/blog/[slug]/page.tsx</code>.
+  If you need more, just add them to <code>components/mdx/</code> and register them in the components map.
+</Callout>
+
+## Callout
+
+Five variants for different tones:
+
+<Callout type="info">
+  Default info callout. Use for asides and explanatory notes.
+</Callout>
+
+<Callout type="warning" title="Watch out">
+  Warning callout for things that could trip people up.
+</Callout>
+
+<Callout type="success">
+  Success callout for confirming something worked.
+</Callout>
+
+<Callout type="error" title="Don't do this">
+  Error callout for footguns and things to avoid.
+</Callout>
+
+<Callout type="note">
+  Note callout for neutral annotations.
+</Callout>
+
+## CodeBlock
+
+A code block with an optional filename header, language label, and a copy-to-clipboard button:
+
+<CodeBlock
+  filename="app/api/hello/route.ts"
+  language="ts"
+  code={`import { NextResponse } from 'next/server';
+
+export async function GET() {
+  return NextResponse.json({ hello: 'world' });
+}`}
+/>
+
+## YouTubeEmbed
+
+Paste a YouTube video ID and you get a privacy-enhanced embed (no cookies until you hit play):
+
+<YouTubeEmbed id="dQw4w9WgXcQ" title="Example video" />
+
+## Using them in your own posts
+
+Just import them at the top of the post... actually, you don't have to. They're auto-registered in `app/blog/[slug]/page.tsx`. Just drop the JSX in the markdown:
+
+```mdx
+<Callout type="success" title="It works">
+  This is all you need.
+</Callout>
+```
+
+The components use Tailwind classes directly, so they respect the rest of your theme and dark mode without any extra config.

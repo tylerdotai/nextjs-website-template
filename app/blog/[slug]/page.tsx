@@ -3,6 +3,13 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getAllPostSlugs, getPostBySlug } from '@/lib/mdx';
+import { Callout, CodeBlock, YouTubeEmbed } from '@/components/mdx';
+
+const mdxComponents = {
+  Callout,
+  CodeBlock,
+  YouTubeEmbed,
+};
 
 export async function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -38,7 +45,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         </p>
       </header>
       <div className="prose prose-neutral dark:prose-invert max-w-none">
-        <MDXRemote source={post.content} />
+        <MDXRemote source={post.content} components={mdxComponents} />
       </div>
     </article>
   );

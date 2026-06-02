@@ -206,19 +206,23 @@ import { Callout } from '@/components/Callout';
 ## Current Limitations
 
 - **No CMS** — content lives in the repo. Great for solo devs and small teams; painful for non-technical editors.
-- **No contact form backend** — `app/contact/page.tsx` has a real form UI but doesn't submit anywhere. Wire it to [Resend](https://resend.com), [Formspree](https://formspree.io), or a Next.js API route.
 - **No analytics** — add [Vercel Analytics](https://vercel.com/analytics), [Plausible](https://plausible.io), or [Fathom](https://usefathom.com) when you need them.
-- **No auth, no database, no API** — this is a static-first template. Add these only when you have a concrete use case.
+- **No auth, no database, no API beyond the contact form** — this is a static-first template. Add these only when you have a concrete use case.
 - **No images/avatars in the example** — `images/logo.png` and `images/screenshot.png` are placeholder slots. Replace with real assets.
+- **Dark mode follows system preference** — there's no manual toggle yet (roadmap).
+- **English only** — no i18n wired up yet (roadmap).
 
 ## Roadmap
 
-- [ ] Add a `changelog` page generated from a `CHANGELOG.md` file
-- [ ] Add an `og-image.png` generator using `@vercel/og`
-- [ ] Add a working contact form example using Next.js Route Handlers + Resend
-- [ ] Add MDX components library: `<Callout>`, `<CodeBlock>`, `<YouTubeEmbed>`
-- [ ] Add Vitest setup with a sample component test
-- [ ] Add a GitHub Actions workflow for lint + typecheck + build on PR
+- [x] Add a `changelog` page generated from a `CHANGELOG.md` file
+- [x] Add an `og-image.png` generator using `@vercel/og`
+- [x] Add a working contact form example using Next.js Route Handlers + Resend
+- [x] Add MDX components library: `<Callout>`, `<CodeBlock>`, `<YouTubeEmbed>`
+- [x] Add Vitest setup with a sample component test
+- [x] Add a GitHub Actions workflow for lint + typecheck + build on PR
+- [ ] Add i18n with `next-intl`
+- [ ] Add a dark mode toggle (currently follows system preference only)
+- [ ] Add full-text search across blog posts
 
 ## License
 

@@ -8,12 +8,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- `changelog` page generated from this file
-- `og-image.png` generator using `@vercel/og`
-- Working contact form example with Resend
-- MDX components library: `<Callout>`, `<CodeBlock>`, `<YouTubeEmbed>`
-- Vitest setup with sample component test
-- GitHub Actions workflow for CI
+- Internationalization (i18n) with `next-intl`
+- Dark mode toggle (currently follows system preference only)
+- Search across blog posts
+
+## [1.1.0] - 2026-06-02
+
+### Added
+- `/changelog` page that parses `CHANGELOG.md` at build time (Keep a Changelog format)
+- `/api/og` OG image generator using `next/og` — title, description, and category as query params
+- Default OpenGraph + Twitter Card metadata on every page pointing at `/api/og`
+- Working contact form wired to Resend via `/api/contact` route handler
+  - Client-side validation, loading states, success and error UI
+  - `.env.example` documents `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`
+  - Graceful dev-mode fallback when keys are missing
+- MDX component library: `<Callout>` (5 variants), `<CodeBlock>` (filename + copy-to-clipboard), `<YouTubeEmbed>` (privacy-enhanced)
+  - Wired into `MDXRemote` in `app/blog/[slug]/page.tsx`
+  - New demo post: `content/mdx-components-demo.mdx`
+- Vitest setup with jsdom and React Testing Library
+  - `bun run test` and `bun run test:watch` scripts
+  - Sample tests: `components/mdx/Callout.test.tsx`, `lib/changelog.test.ts`
+- GitHub Actions CI workflow (`.github/workflows/ci.yml`)
+  - Runs lint, typecheck, test, and build on every push and PR to `main`
+  - Uses Bun with frozen lockfile
+- Changelog page added to `siteConfig.nav` and `sitemap.ts`
+
+### Changed
+- `app/contact/page.tsx` — extracted form into a client component with state management
+- `app/layout.tsx` — added `openGraph.images` and `twitter` metadata blocks
+- `next.config.mjs` — already had `outputFileTracingRoot`; no change
 
 ## [1.0.0] - 2026-06-01
 
