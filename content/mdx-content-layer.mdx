@@ -1,0 +1,25 @@
+---
+title: "MDX is the content layer you've been missing"
+date: "2026-05-20"
+excerpt: "Markdown for prose, React for components. MDX is the boring, perfect answer for blogs, docs, and marketing pages."
+---
+
+MDX is just markdown with the ability to drop in React components. You write the prose in familiar `**bold**` and `# heading` syntax, and when you need a `<Callout>` or a `<CodeBlock>` or a `<YouTubeEmbed>`, you just import and use it.
+
+```mdx
+import { Callout } from '@/components/Callout';
+
+# My blog post
+
+Regular markdown here.
+
+<Callout type="warning">
+  But you can drop in a React component whenever you need one.
+</Callout>
+```
+
+## Why not just use a CMS?
+
+A CMS is great when you have a content team and a strict editorial workflow. For a personal site or a small business, it's overkill. MDX keeps your content in your repo, version-controlled, diff-able, and grep-able. No dashboard to babysit. No API keys to rotate. No "what happens to my content if the SaaS shuts down" anxiety.
+
+When you outgrow it (and you might — that's fine), Sanity and Contentful both have solid import paths.

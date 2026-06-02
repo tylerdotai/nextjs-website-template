@@ -1,0 +1,25 @@
+---
+title: "Why Next.js beats raw HTML for personal sites"
+date: "2026-05-15"
+excerpt: "A static index.html works for one page. The moment you want /about, /blog, or a real contact form, you need routing — and routing is what Next.js does best."
+---
+
+If you've been editing a single `index.html` and dragging it to Netlify, you already know the pain: no real URLs, no reusable components, every change means an FTP upload (or a drag-and-drop), and forget about a blog or a contact form.
+
+Next.js App Router fixes all of this. Every file in `app/` is a route. `app/services/page.tsx` is `yoursite.com/services`. There's nothing to configure.
+
+## What you get for free
+
+- **Real URLs** — `/services`, `/blog/post-slug`, whatever you want.
+- **Server components** — fast initial loads, less client JS.
+- **File-based routing** — your filesystem is your site map.
+- **MDX support** — write content in markdown, drop in React components when you need them.
+
+## The migration story
+
+1. Copy the bits of your existing HTML into `app/page.tsx`.
+2. Move your "other pages" into `app/<page-name>/page.tsx`.
+3. Replace `<a href="...">` with `<Link href="...">` from `next/link`.
+4. Deploy to Vercel. Push to deploy forever after.
+
+That's it. You're on a modern stack.
