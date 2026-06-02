@@ -6,8 +6,13 @@ export const siteConfig = {
     { href: '/', label: 'Home' },
     { href: '/services', label: 'Services' },
     { href: '/about', label: 'About' },
-    { href: '/blog', label: 'Blog' },
+    { href: '/blog', label: 'Journal' },
     { href: '/changelog', label: 'Changelog' },
     { href: '/contact', label: 'Contact' },
+  ],
+
+  legal: [
+    { href: '/terms', label: 'Terms' },
+    { href: '/privacy', label: 'Privacy' },
   ],
 } as const;

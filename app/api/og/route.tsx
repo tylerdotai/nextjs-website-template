@@ -7,7 +7,8 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 
   const title = searchParams.get('title') ?? siteConfig.name;
-  const description = searchParams.get('description') ?? siteConfig.description;
+  const description =
+    searchParams.get('description') ?? siteConfig.description;
   const category = searchParams.get('category') ?? '';
 
   return new ImageResponse(
@@ -20,32 +21,41 @@ export async function GET(request: Request) {
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: '72px',
-          background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)',
-          color: '#f5f5f5',
+          background: '#faf7f2',
+          color: '#1f1a16',
           fontFamily: 'system-ui, sans-serif',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div
             style={{
-              width: 16,
-              height: 16,
+              width: 18,
+              height: 18,
               borderRadius: 4,
-              background: '#2563eb',
+              background: '#b03a2e',
             }}
           />
-          <div style={{ fontSize: 28, color: '#9ca3af' }}>{siteConfig.name}</div>
+          <div
+            style={{
+              fontSize: 28,
+              color: '#6b6258',
+              fontFamily: 'Georgia, serif',
+            }}
+          >
+            {siteConfig.name}
+          </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {category && (
             <div
               style={{
-                fontSize: 24,
-                color: '#2563eb',
+                fontSize: 22,
+                color: '#b03a2e',
                 textTransform: 'uppercase',
                 letterSpacing: 4,
                 fontWeight: 600,
+                fontFamily: 'ui-monospace, monospace',
               }}
             >
               {category}
@@ -53,10 +63,12 @@ export async function GET(request: Request) {
           )}
           <div
             style={{
-              fontSize: 72,
-              fontWeight: 700,
-              lineHeight: 1.1,
+              fontSize: 76,
+              fontWeight: 500,
+              lineHeight: 1.05,
               maxWidth: '90%',
+              fontFamily: 'Georgia, serif',
+              letterSpacing: '-0.025em',
             }}
           >
             {title}
@@ -64,7 +76,7 @@ export async function GET(request: Request) {
           <div
             style={{
               fontSize: 28,
-              color: '#9ca3af',
+              color: '#6b6258',
               maxWidth: '85%',
               lineHeight: 1.4,
             }}
@@ -78,15 +90,16 @@ export async function GET(request: Request) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            fontSize: 24,
-            color: '#6b7280',
+            fontSize: 22,
+            color: '#968b7e',
+            fontFamily: 'ui-monospace, monospace',
           }}
         >
           <div>{siteConfig.url.replace('https://', '')}</div>
           <div style={{ display: 'flex', gap: 12 }}>
             <span>Next.js</span>
             <span>·</span>
-            <span>TypeScript</span>
+            <span>MDX</span>
             <span>·</span>
             <span>Tailwind v4</span>
           </div>

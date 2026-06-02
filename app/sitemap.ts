@@ -4,7 +4,7 @@ import { getAllPostSlugs } from '@/lib/mdx';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
-  const staticPages = ['', '/services', '/about', '/blog', '/changelog', '/contact'].map((p) => ({
+  const staticPages = ['', '/services', '/about', '/blog', '/changelog', '/contact', '/terms', '/privacy'].map((p) => ({
     url: `${base}${p}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,

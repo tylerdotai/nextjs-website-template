@@ -1,7 +1,37 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import './globals.css';
+import type { Metadata, Viewport } from 'next';
+import { Inter, Fraunces, JetBrains_Mono } from 'next/font/google';
+import { SiteHeader } from '@/components/SiteHeader';
+import { SiteFooter } from '@/components/SiteFooter';
 import { siteConfig } from '@/lib/config';
+import './globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  axes: ['opsz', 'SOFT'],
+  variable: '--font-fraunces',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains-mono',
+});
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#faf7f2' },
+    { media: '(prefers-color-scheme: dark)', color: '#1a1614' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -40,46 +70,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
+    >
       <body className="min-h-screen flex flex-col antialiased">
-        <header className="border-b border-border sticky top-0 bg-background/80 backdrop-blur z-50">
-          <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <Link href="/" className="font-bold text-lg">
-              {siteConfig.name}
-            </Link>
-            <ul className="flex items-center gap-6 text-sm">
-              {siteConfig.nav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
+        <SiteHeader />
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-border py-8 mt-16">
-          <div className="max-w-5xl mx-auto px-6 text-sm text-muted-foreground flex flex-col sm:flex-row justify-between gap-4">
-            <p>
-              © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
-            </p>
-            <p>
-              Built with{' '}
-              <a
-                href="https://nextjs.org"
-                className="underline hover:text-foreground"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Next.js
-              </a>
-            </p>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );

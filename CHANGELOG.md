@@ -12,6 +12,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dark mode toggle (currently follows system preference only)
 - Search across blog posts
 
+## [1.2.0] - 2026-06-02
+
+### Added
+- **New design system** — warm, editorial palette replacing the previous indigo/magenta defaults
+  - Primary: terracotta `#b03a2e` (no more AI-template blue)
+  - Background: warm cream `#faf7f2`; dark mode is warm charcoal `#1a1614`
+  - Display font: **Fraunces** (serif with character); body: Inter
+  - No gradients, no glow blobs, no blur — visual interest from type scale, whitespace, asymmetric grids
+- New `SiteHeader` component with:
+  - Mobile hamburger menu (slide-down sheet, body-scroll lock, Escape to close, route-change close)
+  - Active-route underline indicator on desktop nav
+  - Sticky header with backdrop blur
+- New `SiteFooter` with 4-column grid (wordmark, site nav, legal nav, GitHub)
+- `/terms` page and `/privacy` page (legal copy)
+- Custom `app/not-found.tsx` (404) with branded message and back-navigation
+- New utility classes in `globals.css`: `.eyebrow`, `.eyebrow-mark`, `.chip`, `.input-m3`, `.btn-primary`, `.btn-secondary`, `.surface-card`, `.surface-tinted`
+- `<SiteHeader>` test suite — 4 tests covering wordmark, hamburger toggle, ARIA states, body-scroll lock
+- Blog renamed in nav: "Blog" → "Journal" (more editorial)
+- OG image generator (`/api/og`) repainted to match the new palette and serif display face
+
+### Changed
+- All page layouts redesigned for editorial feel: oversized serif H1, eyebrow labels, monospace metadata, hairline borders instead of shadows
+- All pages mobile-optimized: responsive padding (`px-4 sm:px-6 lg:px-8`), stacked grids on small screens, larger touch targets (44px+ on interactive elements), `touch-manipulation` on mobile menu items
+- `contact` form moved to a dedicated client component using new `.input-m3` styling
+- `prose` styles in blog posts updated to use Fraunces for headings and the warm palette
+- `siteConfig` adds a `legal` array for footer/legal nav
+- `viewport` export added to `app/layout.tsx` with theme-color and proper `width`/`initialScale`
+- Sitemap extended with `/terms` and `/privacy`
+
 ## [1.1.0] - 2026-06-02
 
 ### Changed

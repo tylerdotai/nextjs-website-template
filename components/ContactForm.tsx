@@ -43,17 +43,20 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div className="border border-emerald-500/30 bg-emerald-500/10 rounded-lg p-6 flex gap-3">
-        <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-        <div>
-          <h3 className="font-semibold text-emerald-900 dark:text-emerald-100">Message sent</h3>
-          <p className="text-sm text-emerald-800 dark:text-emerald-200 mt-1">
+      <div className="border border-success/30 bg-success/10 rounded-md p-5 flex gap-3">
+        <CheckCircle2
+          className="w-5 h-5 text-success flex-shrink-0 mt-0.5"
+          aria-hidden="true"
+        />
+        <div className="flex-1">
+          <h3 className="font-semibold text-foreground">Message sent</h3>
+          <p className="text-sm text-muted-foreground mt-1">
             We&apos;ll get back to you within one business day.
           </p>
           <button
             type="button"
             onClick={() => setStatus('idle')}
-            className="text-sm underline mt-2 text-emerald-700 dark:text-emerald-300"
+            className="text-sm font-semibold text-primary hover:underline mt-2"
           >
             Send another message
           </button>
@@ -63,9 +66,12 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-5">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-1">
+        <label
+          htmlFor="name"
+          className="block text-sm font-medium mb-1.5"
+        >
           Name
         </label>
         <input
@@ -75,11 +81,14 @@ export function ContactForm() {
           required
           maxLength={200}
           disabled={status === 'submitting'}
-          className="w-full border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
+          className="input-m3 disabled:opacity-50"
         />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-1">
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium mb-1.5"
+        >
           Email
         </label>
         <input
@@ -88,11 +97,14 @@ export function ContactForm() {
           type="email"
           required
           disabled={status === 'submitting'}
-          className="w-full border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
+          className="input-m3 disabled:opacity-50"
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-1">
+        <label
+          htmlFor="message"
+          className="block text-sm font-medium mb-1.5"
+        >
           Message
         </label>
         <textarea
@@ -103,25 +115,29 @@ export function ContactForm() {
           minLength={10}
           maxLength={5000}
           disabled={status === 'submitting'}
-          className="w-full border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
+          className="input-m3 resize-y disabled:opacity-50"
         />
       </div>
 
       {status === 'error' && errorMessage && (
-        <div className="border border-red-500/30 bg-red-500/10 rounded-md p-3 flex gap-2 text-sm">
-          <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
-          <span className="text-red-800 dark:text-red-200">{errorMessage}</span>
+        <div className="border border-error/30 bg-error/10 rounded-md p-3 flex gap-2 text-sm">
+          <AlertCircle
+            className="w-4 h-4 text-error flex-shrink-0 mt-0.5"
+            aria-hidden="true"
+          />
+          <span className="text-foreground/90">{errorMessage}</span>
         </div>
       )}
 
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="bg-foreground text-background px-5 py-3 rounded-md font-medium hover:opacity-90 transition-opacity disabled:opacity-50 inline-flex items-center gap-2"
+        className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {status === 'submitting' ? (
           <>
-            <Loader2 className="w-4 h-4 animate-spin" /> Sending...
+            <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" />
+            Sending...
           </>
         ) : (
           'Send message'

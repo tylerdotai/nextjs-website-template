@@ -7,44 +7,58 @@ export const metadata: Metadata = {
   description: 'Release notes and roadmap for this project.',
 };
 
-const SECTION_LABELS: Record<string, { label: string; color: string }> = {
-  added: { label: 'Added', color: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400' },
-  changed: { label: 'Changed', color: 'bg-blue-500/10 text-blue-700 dark:text-blue-400' },
-  deprecated: { label: 'Deprecated', color: 'bg-amber-500/10 text-amber-700 dark:text-amber-400' },
-  removed: { label: 'Removed', color: 'bg-red-500/10 text-red-700 dark:text-red-400' },
-  fixed: { label: 'Fixed', color: 'bg-purple-500/10 text-purple-700 dark:text-purple-400' },
-  security: { label: 'Security', color: 'bg-rose-500/10 text-rose-700 dark:text-rose-400' },
-  planned: { label: 'Planned', color: 'bg-slate-500/10 text-slate-700 dark:text-slate-400' },
-  other: { label: 'Other', color: 'bg-slate-500/10 text-slate-700 dark:text-slate-400' },
+const SECTION_LABELS: Record<string, { label: string; cls: string }> = {
+  added: { label: 'Added', cls: 'bg-success/15 text-success' },
+  changed: { label: 'Changed', cls: 'bg-info/15 text-info' },
+  deprecated: { label: 'Deprecated', cls: 'bg-warning/15 text-warning' },
+  removed: { label: 'Removed', cls: 'bg-error/15 text-error' },
+  fixed: { label: 'Fixed', cls: 'bg-primary-container text-primary' },
+  security: { label: 'Security', cls: 'bg-error/15 text-error' },
+  planned: { label: 'Planned', cls: 'bg-muted text-muted-foreground' },
+  other: { label: 'Other', cls: 'bg-muted text-muted-foreground' },
 };
 
 export default function ChangelogPage() {
   const releases = getChangelog();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-20">
-      <header className="mb-12 space-y-4">
-        <h1 className="text-5xl font-bold tracking-tight">Changelog</h1>
-        <p className="text-xl text-muted-foreground">
-          {releases.length} {releases.length === 1 ? 'release' : 'releases'}. Generated
-          from <code className="bg-muted px-1.5 py-0.5 rounded text-base">CHANGELOG.md</code> at build time.
+    <>
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 pb-10 sm:pb-12">
+        <span className="eyebrow mb-6 block">Changelog</span>
+        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-medium tracking-[-0.03em] leading-[1.05]">
+          What shipped.
+        </h1>
+        <p className="mt-6 text-lg sm:text-xl text-muted-foreground leading-relaxed">
+          {releases.length} {releases.length === 1 ? 'release' : 'releases'}.
+          Generated from{' '}
+          <code className="font-mono text-base bg-muted px-1.5 py-0.5 rounded">
+            CHANGELOG.md
+          </code>{' '}
+          at build time.
         </p>
-      </header>
+      </section>
 
-      <div className="space-y-12">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24 space-y-16">
         {releases.map((release) => (
-          <section key={release.version}>
-            <header className="mb-4 flex items-baseline gap-3 border-b border-border pb-2">
-              <h2 className="text-2xl font-semibold">{release.version}</h2>
+          <article key={release.version}>
+            <header className="flex items-baseline gap-3 flex-wrap mb-6 pb-3 border-b border-border">
+              <h2 className="font-display text-2xl sm:text-3xl font-medium tracking-tight">
+                {release.version}
+              </h2>
               {release.date ? (
-                <time className="text-sm text-muted-foreground" dateTime={release.date}>
+                <time
+                  className="font-mono text-sm text-muted-foreground"
+                  dateTime={release.date}
+                >
                   {release.date}
                 </time>
               ) : (
-                <span className="text-sm text-muted-foreground italic">unreleased</span>
+                <span className="font-mono text-sm text-muted-foreground italic">
+                  unreleased
+                </span>
               )}
               {!release.released && (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                <span className="font-mono text-[0.6875rem] uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm bg-warning/15 text-warning">
                   upcoming
                 </span>
               )}
@@ -53,19 +67,25 @@ export default function ChangelogPage() {
             {release.sections.length === 0 ? (
               <p className="text-sm text-muted-foreground italic">No entries.</p>
             ) : (
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {release.sections.map((section, idx) => {
                   const meta = SECTION_LABELS[section.type] ?? SECTION_LABELS.other;
                   return (
                     <div key={idx}>
-                      <h3
-                        className={`inline-block text-xs font-semibold uppercase tracking-wide px-2 py-0.5 rounded ${meta.color}`}
+                      <span
+                        className={`inline-block font-mono text-[0.6875rem] font-semibold uppercase tracking-[0.15em] px-2 py-0.5 rounded-sm mb-3 ${meta.cls}`}
                       >
                         {meta.label}
-                      </h3>
-                      <ul className="mt-2 space-y-1.5 list-disc list-inside text-muted-foreground">
+                      </span>
+                      <ul className="space-y-2 pl-0 list-none">
                         {section.items.map((item, i) => (
-                          <li key={i}>{item}</li>
+                          <li key={i} className="flex gap-3 leading-relaxed">
+                            <span
+                              aria-hidden="true"
+                              className="mt-2.5 w-1 h-1 rounded-full bg-muted-foreground flex-shrink-0"
+                            />
+                            <span className="text-foreground/90">{item}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -73,20 +93,9 @@ export default function ChangelogPage() {
                 })}
               </div>
             )}
-          </section>
+          </article>
         ))}
-      </div>
-
-      <footer className="mt-16 pt-8 border-t border-border text-sm text-muted-foreground">
-        <p>
-          See <a
-            href={`https://github.com/${siteConfig.url.replace('https://', '')}`}
-            className="underline hover:text-foreground"
-            target="_blank"
-            rel="noreferrer"
-          >the source repo</a> for the canonical changelog file.
-        </p>
-      </footer>
-    </div>
+      </section>
+    </>
   );
 }
