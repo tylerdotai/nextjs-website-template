@@ -1,6 +1,14 @@
 # Next.js Website Template
 
-A clean, production-ready **Next.js 16 + Tailwind v4 + MDX** starter for personal and small-business websites. Real URLs for every page, content as code, Vercel-ready.
+**A clean, production-ready Next.js 16 starter for personal and small-business websites.** Real URLs for every page, content as MDX, an editorial design system out of the box, and zero CMS to babysit. Push to deploy on Vercel.
+
+This is the answer to the three things every "I edit a single `index.html` and drag it to Netlify" site gets stuck on:
+
+- **No real URLs** — every file in `app/` is a route. `app/services/page.tsx` literally maps to `/services`.
+- **No good way to edit content** — pages and blog posts are MDX files in the repo. Edit, commit, push, live.
+- **Context limits with AI coding tools** — Next.js's file conventions are well-known to LLMs, so Claude Code and friends can edit a single component without re-reading the entire site.
+
+Designed for people who want a polished, modern personal or small-business site without rebuilding the same boilerplate from scratch.
 
 <p align="center">
   <img src="images/logo.png" alt="Next.js Website Template logo" width="120"/>
@@ -17,16 +25,6 @@ A clean, production-ready **Next.js 16 + Tailwind v4 + MDX** starter for persona
 - **Live site:** [https://nextjs-website-template-sooty.vercel.app/](https://nextjs-website-template-sooty.vercel.app/)
 - Repository: `https://github.com/tylerdotai/nextjs-website-template`
 - One-click deploy: [Deploy to Vercel](https://vercel.com/new/clone?repository-url=https://github.com/tylerdotai/nextjs-website-template)
-
-## About
-
-This template is the answer to the three things every "I edit a single `index.html` and drag it to Netlify" site gets stuck on:
-
-1. **No real URLs** — every file in `app/` is a route. `app/services/page.tsx` literally maps to `/services`.
-2. **No good way to edit content** — pages and blog posts are MDX files in the repo. Edit, commit, push, live. No CMS to babysit.
-3. **Context limits with AI coding tools** — Next.js's file conventions are well-known to LLMs, so Claude Code and friends can edit a single component without re-reading the entire site.
-
-It is designed for people who want a polished, modern personal or small-business site without rebuilding the same boilerplate from scratch.
 
 ## Tech Stack
 
@@ -48,49 +46,87 @@ It is designed for people who want a polished, modern personal or small-business
 
 ### For Site Owners
 
-- **Real URLs out of the box** — `/`, `/services`, `/about`, `/blog`, `/blog/<slug>`, `/contact`
-- **Content as code** — drop a new `.mdx` file in `/content/` and it appears at `/blog/<slug>`
-- **SEO built in** — auto-generated `sitemap.xml`, `robots.txt`, OpenGraph metadata, per-page `<title>` and `<description>`
-- **Dark mode** — Tailwind v4 + `prefers-color-scheme`, no flash on load
-- **Single source of truth** — site name, nav, and URL all in `lib/config.ts`
+- **Real URLs out of the box** — `/`, `/services`, `/about`, `/blog`, `/blog/<slug>`, `/contact`, `/terms`, `/privacy`, `/changelog`
+- **Content as code** — drop a new `.mdx` file in `content/` and it appears at `/blog/<slug>` automatically
+- **Editorial design system baked in** — warm cream/charcoal palette, terracotta accent, Fraunces serif display + Inter body, hairline borders instead of shadows, mobile-first responsive nav with hamburger sheet
+- **Dark mode** — Tailwind v4 + `prefers-color-scheme`, no flash on load, no toggle needed
+- **SEO built in** — auto-generated `sitemap.xml`, `robots.txt`, OpenGraph metadata + per-page `<title>` and `<description>`, dynamic OG image generator at `/api/og`
+- **Single source of truth** — site name, nav, URL, and contact email all in `lib/config.ts`
+- **Working contact form** — client-validated form posts to `/api/contact`, wired to Resend with a dev-mode fallback when keys are absent
 - **Vercel-ready** — zero config, one-click deploy, push-to-deploy on every commit
 
 ### For Developers
 
 - **Type-safe routing** — full TypeScript, no untyped props
-- **Static generation** — 15 of 17 routes prerender as static HTML; the contact form and OG-image route stay dynamic on purpose
+- **Static generation by default** — 15 of 17 routes prerender as static HTML; the contact form and OG-image route stay dynamic on purpose
 - **Server components by default** — fast initial loads, minimal client JS
-- **MDX with components** — import React components inside markdown when you need them
-- **Tailwind v4** — `@theme` tokens, `@import "tailwindcss"`, no `tailwind.config.js` boilerplate
-- **Clean separation** — `app/` for routes, `content/` for posts, `lib/` for utilities
+- **MDX with custom components** — `<Callout>`, `<CodeBlock>`, `<YouTubeEmbed>` available inside any blog post; import your own React components directly
+- **Tailwind v4** — `@theme` tokens + `@import "tailwindcss"`, no `tailwind.config.js` boilerplate, design tokens on `:root` cascade
+- **Clean separation** — `app/` for routes, `content/` for posts, `components/` for shared UI, `lib/` for utilities
+- **Tested** — Vitest + Testing Library with sample tests for the header, the callout component, and the changelog parser
+- **CI on every PR** — GitHub Actions runs lint, typecheck, test, and build against Bun
 
 ## Project Structure
 
 ```text
-app/                                 Every file here is a route
-├── page.tsx                         → /
-├── services/page.tsx                → /services  (demo: shows the URL mapping)
-├── about/page.tsx                   → /about
-├── blog/
-│   ├── page.tsx                     → /blog  (index of all posts)
-│   └── [slug]/page.tsx              → /blog/<slug>  (renders MDX)
-├── contact/page.tsx                 → /contact
-├── layout.tsx                       Shared shell: header, nav, footer
-├── sitemap.ts                       Auto-generated sitemap.xml
-├── robots.ts                        Auto-generated robots.txt
-└── globals.css                      Tailwind v4 entry + @theme tokens
-
-content/                             Blog posts as MDX files
-├── why-nextjs.mdx
-└── mdx-content-layer.mdx
-
-lib/
-├── config.ts                        Site name, nav, URL — edit this
-├── mdx.ts                           MDX file loading + frontmatter parsing
-└── utils.ts                         cn() helper for Tailwind class merging
-
-public/                              Static assets served as-is
-images/                              README assets (logo, screenshots)
+nextjs-website-template/
+├── app/                              # Every file here is a route
+│   ├── page.tsx                      # → /
+│   ├── services/page.tsx             # → /services
+│   ├── about/page.tsx                # → /about
+│   ├── blog/
+│   │   ├── page.tsx                  # → /blog  (index of all posts)
+│   │   └── [slug]/page.tsx           # → /blog/<slug>  (renders MDX)
+│   ├── contact/page.tsx              # → /contact
+│   ├── changelog/page.tsx            # → /changelog  (renders CHANGELOG.md)
+│   ├── terms/page.tsx                # → /terms
+│   ├── privacy/page.tsx              # → /privacy
+│   ├── not-found.tsx                 # 404 page
+│   ├── api/
+│   │   ├── contact/route.ts          # POST → Resend email
+│   │   └── og/route.tsx              # GET → dynamic OG image
+│   ├── layout.tsx                    # Shared shell: header, footer, fonts, metadata
+│   ├── globals.css                   # Tailwind v4 entry, @theme tokens, .prose styles
+│   ├── sitemap.ts                    # Auto-generated sitemap.xml
+│   └── robots.ts                     # Auto-generated robots.txt
+│
+├── components/                       # Shared React components
+│   ├── SiteHeader.tsx                # Desktop nav + mobile hamburger sheet
+│   ├── SiteHeader.test.tsx
+│   ├── SiteFooter.tsx
+│   ├── ContactForm.tsx               # Client component, validated form
+│   └── mdx/
+│       ├── index.ts                  # Re-exports for MDX components
+│       ├── Callout.tsx               # 5 variants (info/warn/danger/tip/success)
+│       ├── Callout.test.tsx
+│       ├── CodeBlock.tsx             # Filename header + copy-to-clipboard
+│       └── YouTubeEmbed.tsx          # Privacy-enhanced embed
+│
+├── content/                          # Blog posts as MDX files
+│   ├── why-nextjs.mdx
+│   ├── mdx-content-layer.mdx
+│   └── mdx-components-demo.mdx
+│
+├── lib/                              # Shared utilities
+│   ├── config.ts                     # Site name, nav, URL, contact — edit this
+│   ├── mdx.ts                        # MDX file loading + frontmatter parsing
+│   ├── changelog.ts                  # Parses CHANGELOG.md at build time
+│   ├── changelog.test.ts
+│   └── utils.ts                      # cn() helper for Tailwind class merging
+│
+├── public/                           # Static assets served as-is
+├── images/                           # README assets (logo, screenshot)
+│
+├── .github/workflows/ci.yml          # Lint, typecheck, test, build on every PR
+├── .env.example                      # RESEND_API_KEY, CONTACT_TO_EMAIL, etc.
+├── eslint.config.mjs                 # Flat config (ESLint 10)
+├── postcss.config.mjs                # @tailwindcss/postcss
+├── next.config.mjs                   # MDX wiring + image remotePatterns
+├── tsconfig.json
+├── vitest.config.ts
+├── vitest.setup.ts
+├── bun.lock
+└── package.json
 ```
 
 ## Getting Started

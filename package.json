@@ -2,7 +2,7 @@
   "name": "nextjs-website-template",
   "version": "1.3.0",
   "private": false,
-  "description": "A clean Next.js 16 + Tailwind v4 + MDX template for building personal/business websites. Real URLs for every page, content as MDX files, zero CMS to babysit.",
+  "description": "A clean Next.js 16 starter for personal and small-business websites. Real URLs for every page, content as MDX, an editorial design system out of the box, zero CMS to babysit. Push to deploy on Vercel.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
